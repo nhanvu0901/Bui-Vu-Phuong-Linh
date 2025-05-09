@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fixed header with name */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .fixed-header.scrolled {
+            padding: 10px 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .owner-name {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid #333;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dots .dot.active {
+            background-color: #333;
+            transform: scale(1.3);
+        }
+
+        /* Slide 0 - Title */
+        #slide0 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #slide0::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+            radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 25%);
+        }
+
+        #slide0 h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        #slide0 p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 1s ease-out 0.5s both;
+            z-index: 2;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Slide 1 - Thoa Vũ Brand */
+        #slide1 {
+            display: flex;
+        }
+
+        .left-side {
+            width: 65%;
+            height: 100%;
+            background-color: #e91e63; /* Red background as shown in example */
+            position: relative;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-side {
+            width: 35%;
+            height: 100%;
+            background-color: white;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brand-title {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            z-index: 5;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .brand-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            z-index: 5;
+            text-align: center;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .facebook-badge {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+            z-index: 5;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .right-side h2 {
+            color: #333;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .product-info {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 400;
+            max-width: 80%;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img1 {
+            position: absolute;
+            width: 45%;
+            height: auto;
+            left: 10%;
+            top: 20%;
+            animation: fadeIn 1s ease-out 0.5s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .img1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .img2 {
+            position: absolute;
+            width: 35%;
+            height: auto;
+            right: 15%;
+            bottom: 20%;
+            animation: fadeIn 1s ease-out 1s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .img2:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .img3 {
+            width: 80%;
+            height: auto;
+            animation: fadeIn 1s ease-out 0.7s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .img3:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Slide 2 - D'homestay */
+        #slide2 {
+            background-color: #2196f3; /* Blue background as shown in example */
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .homestay-title {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        .gallery-item {
+            width: calc(33.333% - 20px);
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .phone-mockup {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: auto;
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+            100% { transform: translateY(-50%) translateX(0); }
+        }
+
+        /* Slide 3 - Video Section */
+        #slide3 {
+            background-color: #4caf50; /* Green background as shown in example */
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 90%;
+            max-width: 1400px;
+        }
+
+        .video-wrapper {
+            width: 45%;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .video-wrapper.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .video-overlay:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: modalZoomIn 0.3s ease;
+        }
+
+        @keyframes modalZoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            display: block;
+            border: 3px solid white;
+            box-shadow: 0 5px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .modal-prev,
+        .modal-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 30px;
+            padding: 15px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-prev:hover,
+        .modal-next:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animated background elements for slide0 */
+        .animated-bg {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-circle-1 {
+            width: 300px;
+            height: 300px;
+            left: -150px;
+            top: 30%;
+            animation: floatCircle 15s ease-in-out infinite;
+        }
+
+        .bg-circle-2 {
+            width: 200px;
+            height: 200px;
+            right: -100px;
+            bottom: 20%;
+            animation: floatCircle 12s ease-in-out infinite reverse;
+        }
+
+        .bg-circle-3 {
+            width: 150px;
+            height: 150px;
+            right: 20%;
+            top: 10%;
+            animation: floatCircle 10s ease-in-out infinite 2s;
+        }
+
+        @keyframes floatCircle {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .left-side {
+                width: 60%;
+            }
+
+            .right-side {
+                width: 40%;
+            }
+
+            .gallery-item {
+                width: calc(50% - 20px);
+            }
+
+            .phone-mockup {
+                width: 200px;
+            }
+
+            .video-wrapper {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #slide1 {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                width: 100%;
+                height: 50%;
+            }
+
+            .gallery-item {
+                width: calc(100% - 20px);
+            }
+
+            .video-wrapper {
+                width: 90%;
+            }
+
+            .phone-mockup {
+                display: none;
+            }
+
+            #slide0 h1 {
+                font-size: 3rem;
+            }
+
+            #slide0 p {
+                font-size: 1.2rem;
+            }
+
+            .brand-title, .homestay-title {
+                font-size: 2rem;
+            }
+
+            .modal-prev,
+            .modal-next {
+                padding: 10px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Fixed Header with Name -->
+<div class="fixed-header">
+    <div class="owner-name">Bùi Vũ Phương Linh</div>
+    <div></div> <!-- Empty div for flexbox spacing -->
+</div>
+
+<!-- Navigation Dots -->
+<div class="nav-dots">
+    <div class="dot active" data-slide="slide0"></div>
+    <div class="dot" data-slide="slide1"></div>
+    <div class="dot" data-slide="slide2"></div>
+    <div class="dot" data-slide="slide3"></div>
+</div>
+
+<!-- Slide 0: Title -->
+<section id="slide0">
+    <div class="animated-bg bg-circle-1"></div>
+    <div class="animated-bg bg-circle-2"></div>
+    <div class="animated-bg bg-circle-3"></div>
+    <h1>Hello universe!</h1>
+    <p>As a Multiple-task employer, I can transform any concept into a unique visual language, by Canva</p>
+</section>
+
+<!-- Slide 1: Thoa Vũ Brand -->
+<section id="slide1">
+    <div class="left-side">
+        <h2 class="brand-title">Thoa Vũ - a high-end Ao Dai Brand in Hạ Long</h2>
+        <div class="image-container">
+            <img src="/image/1.png" alt="Thoa Vũ Image 1" class="img1">
+            <img src="/image/2.png" alt="Thoa Vũ Image 2" class="img2">
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="image-container">
+            <img src="/image/3.png" alt="Thoa Vũ Image 3" class="img3">
+        </div>
+    </div>
+</section>
+
+<!-- Slide 2: D'homestay -->
+<section id="slide2">
+    <h2 class="homestay-title">D'homestay Hạ Long</h2>
+    <div class="gallery">
+        <div class="gallery-item" data-img="/image/4.png">
+            <img src="/image/4.png" alt="D'homestay Image 4">
+        </div>
+        <div class="gallery-item" data-img="/image/5.png">
+            <img src="/image/5.png" alt="D'homestay Image 5">
+        </div>
+        <div class="gallery-item" data-img="/image/6.png">
+            <img src="/image/6.png" alt="D'homestay Image 6">
+        </div>
+        <div class="gallery-item" data-img="/image/7.png">
+            <img src="/image/7.png" alt="D'homestay Image 7">
+        </div>
+        <div class="gallery-item" data-img="/image/8.png">
+            <img src="/image/8.png" alt="D'homestay Image 8">
+        </div>
+    </div>
+</section>
+
+<!-- Slide 3: Video Section -->
+<section id="slide3">
+    <div class="video-container">
+        <div class="video-wrapper">
+            <video src="/video/1.mp4" preload="metadata" poster="/api/placeholder/1920/1080"></video>
+            <div class="video-overlay">
+                <div class="play-button">▶</div>
+            </div>
+        </div>
+        <div class="video-wrapper">
+            <video src="/video/2.mp4" preload="metadata" poster="/api/placeholder/1920/1080"></video>
+            <div class="video-overlay">
+                <div class="play-button">▶</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Modal -->
+<div class="modal" id="imageModal">
+    <button class="close-modal">&times;</button>
+    <button class="modal-prev">&lt;</button>
+    <button class="modal-next">&gt;</button>
+    <div class="modal-content">
+        <img src="" alt="Modal Image" id="modalImage">
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Navigation dots functionality
+        const dots = document.querySelectorAll('.nav-dots .dot');
+        const sections = document.querySelectorAll('section');
+
+        // Animate gallery items and videos when they come into view
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+        // Set initial active section
+        let currentSection = 0;
+
+        // Handle dot clicks
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                scrollToSection(index);
+            });
+        });
+
+        // Scroll to section function with more subtle animation
+        function scrollToSection(index) {
+            const targetPosition = sections[index].offsetTop;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 1000; // Slower duration for more subtle scrolling
+            let start = null;
+
+            // Custom easing function for smoother feel
+            function easeInOutCubic(t) {
+                return t < 0.5
+                    ? 4 * t * t * t
+                    : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const easeProgress = easeInOutCubic(progress);
+
+                window.scrollTo(0, startPosition + distance * easeProgress);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    currentSection = index;
+                    updateActiveDot();
+                }
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Update active dot and header state
+        function updateActiveDot() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSection].classList.add('active');
+
+            // Update header styling based on scroll position
+            const header = document.querySelector('.fixed-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Check which section is in viewport
+        function checkSectionInView() {
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.scrollY;
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (scrollTop >= sectionTop - windowHeight / 2 &&
+                    scrollTop < sectionTop + sectionHeight - windowHeight / 2) {
+                    currentSection = index;
+                    updateActiveDot();
+                }
+            });
+
+            // Animate elements in view
+            animateElementsInView();
+        }
+
+        // Animate elements when they come into view
+        function animateElementsInView() {
+            const windowHeight = window.innerHeight;
+
+            galleryItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < windowHeight - 100) {
+                    item.classList.add('visible');
+                }
+            });
+
+            videoWrappers.forEach(wrapper => {
+                const wrapperTop = wrapper.getBoundingClientRect().top;
+                if (wrapperTop < windowHeight - 100) {
+                    wrapper.classList.add('visible');
+                }
+            });
+        }
+
+        // Handle scroll events
+        window.addEventListener('scroll', function() {
+            checkSectionInView();
+            updateActiveDot(); // Update header on scroll
+        });
+
+        // Video functionality
+        const videoOverlays = document.querySelectorAll('.video-overlay');
+        videoOverlays.forEach(overlay => {
+            overlay.addEventListener('click', function() {
+                const video = this.previousElementSibling;
+                const playButton = this.querySelector('.play-button');
+
+                if (video.paused) {
+                    video.play();
+                    playButton.innerHTML = "❚❚";
+                    this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+                } else {
+                    video.pause();
+                    playButton.innerHTML = "▶";
+                    this.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                }
+            });
+        });
+
+        // Add delay to gallery item animations
+        galleryItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Add delay to video animations
+        videoWrappers.forEach((wrapper, index) => {
+            wrapper.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        // Initial check for elements in view
+        setTimeout(animateElementsInView, 100);
+
+        // Image Modal Functionality
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+        const prevButton = document.querySelector('.modal-prev');
+        const nextButton = document.querySelector('.modal-next');
+        let currentImageIndex = 0;
+        const galleryImageSrcs = Array.from(galleryItems).map(item => item.getAttribute('data-img'));
+
+        // Open modal when gallery item is clicked
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                const imageSrc = this.getAttribute('data-img');
+                modalImage.src = imageSrc;
+                currentImageIndex = index;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.classList.remove('open');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        });
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Navigate to previous image
+        prevButton.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImageSrcs.length) % galleryImageSrcs.length;
+            modalImage.src = galleryImageSrcs[currentImageIndex];
+        });
+
+        // Navigate to next image
+        nextButton.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImageSrcs.length;
+            modalImage.src = galleryImageSrcs[currentImageIndex];
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!modal.classList.contains('open')) return;
+
+            if (e.key === 'Escape') {
+                modal.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                currentImageIndex = (currentImageIndex - 1 + galleryImageSrcs.length) % galleryImageSrcs.length;
+                modalImage.src = galleryImageSrcs[currentImageIndex];
+            } else if (e.key === 'ArrowRight') {
+                currentImageIndex = (currentImageIndex + 1) % galleryImageSrcs.length;
+                modalImage.src = galleryImageSrcs[currentImageIndex];
+            }
+        });
+    });
+</script>
+</body>
+</html>
