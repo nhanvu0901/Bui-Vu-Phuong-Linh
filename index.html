@@ -311,32 +311,9 @@
             border-radius: 10px;
         }
 
-        .image-wrapper {
+        .high-res-image {
             width: 25%;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .image-wrapper.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .image-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 10px;
-            transition: transform 0.5s ease;
-        }
-
-        .image-wrapper:hover img {
-            transform: scale(1.05);
+            height:100%
         }
 
         .video-overlay {
@@ -662,9 +639,7 @@
                 <div class="play-button">▶</div>
             </div>
         </div>
-        <div class="image-wrapper">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/9.png" alt="High Resolution Image">
-        </div>
+        <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/9.png" alt="High Resolution Image" class="high-res-image">
     </div>
 </section>
 
@@ -826,12 +801,12 @@
                 }
             });
 
-            imageWrappers.forEach(wrapper => {
-                const wrapperTop = wrapper.getBoundingClientRect().top;
-                if (wrapperTop < windowHeight - 50) {
-                    wrapper.classList.add('visible');
+            if (highResImage) {
+                const imageTop = highResImage.getBoundingClientRect().top;
+                if (imageTop < windowHeight - 50) {
+                    highResImage.classList.add('visible');
                 }
-            });
+            }
         }
 
         // Handle scroll events
@@ -869,9 +844,9 @@
             wrapper.style.transitionDelay = `${index * 0.2}s`;
         });
 
-        imageWrappers.forEach((wrapper, index) => {
-            wrapper.style.transitionDelay = `${(index + videoWrappers.length) * 0.2}s`;
-        });
+        if (highResImage) {
+            highResImage.style.transitionDelay = `${videoWrappers.length * 0.2}s`;
+        }
 
         // Initial check for elements in view
         setTimeout(animateElementsInView, 100);
