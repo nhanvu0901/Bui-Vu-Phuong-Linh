@@ -152,48 +152,16 @@
         .brand-title {
             color: white;
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            z-index: 5;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .brand-subtitle {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.2rem;
             margin-bottom: 2rem;
             z-index: 5;
             text-align: center;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-
-        .facebook-badge {
-            color: white;
-            background-color: rgba(255, 255, 255, 0.2);
-            font-size: 1rem;
-            padding: 8px 15px;
-            border-radius: 20px;
-            margin-top: 1.5rem;
-            z-index: 5;
-            text-align: center;
-            letter-spacing: 1px;
         }
 
         .right-side h2 {
             color: #333;
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 2rem;
             text-align: center;
-        }
-
-        .product-info {
-            color: #666;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-weight: 400;
-            max-width: 80%;
         }
 
         .image-container {
@@ -213,13 +181,6 @@
             top: 20%;
             animation: fadeIn 1s ease-out 0.5s both;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .img1:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
         .img2 {
@@ -230,13 +191,6 @@
             bottom: 20%;
             animation: fadeIn 1s ease-out 1s both;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .img2:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
         .img3 {
@@ -244,13 +198,6 @@
             height: auto;
             animation: fadeIn 1s ease-out 0.7s both;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .img3:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
         /* Slide 2 - D'homestay */
@@ -322,7 +269,7 @@
             100% { transform: translateY(-50%) translateX(0); }
         }
 
-        /* Slide 3 - Video Section */
+        /* Slide 3 - Video and Image Section */
         #slide3 {
             background-color: #4caf50; /* Green background as shown in example */
             padding: 3rem;
@@ -332,17 +279,17 @@
             align-items: center;
         }
 
-        .video-container {
+        .media-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
+            align-items: center;
+            gap: 20px;
             width: 90%;
             max-width: 1400px;
         }
 
         .video-wrapper {
-            width: 45%;
+            width: 75%;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
@@ -362,6 +309,34 @@
             height: auto;
             display: block;
             border-radius: 10px;
+        }
+
+        .image-wrapper {
+            width: 25%;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .image-wrapper.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+
+        .image-wrapper:hover img {
+            transform: scale(1.05);
         }
 
         .video-overlay {
@@ -557,7 +532,11 @@
             }
 
             .video-wrapper {
-                width: 80%;
+                width: 70%;
+            }
+
+            .image-wrapper {
+                width: 30%;
             }
         }
 
@@ -576,7 +555,16 @@
             }
 
             .video-wrapper {
-                width: 90%;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .image-wrapper {
+                width: 100%;
+            }
+
+            .media-container {
+                flex-direction: column;
             }
 
             .phone-mockup {
@@ -665,20 +653,17 @@
     </div>
 </section>
 
-<!-- Slide 3: Video Section -->
+<!-- Slide 3: Video and Image Section -->
 <section id="slide3">
-    <div class="video-container">
+    <div class="media-container">
         <div class="video-wrapper">
             <video src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/video/1.mp4" preload="metadata" poster="/api/placeholder/1920/1080"></video>
             <div class="video-overlay">
                 <div class="play-button">▶</div>
             </div>
         </div>
-        <div class="video-wrapper">
-            <video src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/video/2.mp4" preload="metadata" poster="/api/placeholder/1920/1080"></video>
-            <div class="video-overlay">
-                <div class="play-button">▶</div>
-            </div>
+        <div class="image-wrapper">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/9.png" alt="High Resolution Image">
         </div>
     </div>
 </section>
@@ -702,37 +687,78 @@
         // Animate gallery items and videos when they come into view
         const galleryItems = document.querySelectorAll('.gallery-item');
         const videoWrappers = document.querySelectorAll('.video-wrapper');
+        const imageWrappers = document.querySelectorAll('.image-wrapper');
 
         // Set initial active section
         let currentSection = 0;
 
+        // Flag to prevent multiple scroll events while animation is in progress
+        let isScrolling = false;
+
         // Handle dot clicks
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
-                scrollToSection(index);
+                if (!isScrolling) {
+                    scrollToSection(index);
+                }
             });
         });
 
-        // Scroll to section function with more subtle animation
+        // Handle wheel events for exact slide scrolling
+        window.addEventListener('wheel', function(e) {
+            e.preventDefault();
+
+            if (isScrolling) return;
+
+            if (e.deltaY > 0) {
+                // Scroll down - go to next slide
+                if (currentSection < sections.length - 1) {
+                    scrollToSection(currentSection + 1);
+                }
+            } else {
+                // Scroll up - go to previous slide
+                if (currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            }
+        }, { passive: false });
+
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (isScrolling) return;
+
+            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                if (currentSection < sections.length - 1) {
+                    scrollToSection(currentSection + 1);
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                if (currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            }
+        });
+
+        // Scroll to section function with faster reaction time
         function scrollToSection(index) {
+            if (isScrolling) return;
+
+            isScrolling = true;
             const targetPosition = sections[index].offsetTop;
             const startPosition = window.pageYOffset;
             const distance = targetPosition - startPosition;
-            const duration = 1000; // Slower duration for more subtle scrolling
+            const duration = 400; // Much faster duration for more responsive scrolling
             let start = null;
 
-            // Custom easing function for smoother feel
-            function easeInOutCubic(t) {
-                return t < 0.5
-                    ? 4 * t * t * t
-                    : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            // Custom easing function that's more immediate
+            function easeOutQuad(t) {
+                return t * (2 - t);
             }
 
             function animation(currentTime) {
                 if (start === null) start = currentTime;
                 const timeElapsed = currentTime - start;
                 const progress = Math.min(timeElapsed / duration, 1);
-                const easeProgress = easeInOutCubic(progress);
+                const easeProgress = easeOutQuad(progress);
 
                 window.scrollTo(0, startPosition + distance * easeProgress);
 
@@ -741,6 +767,7 @@
                 } else {
                     currentSection = index;
                     updateActiveDot();
+                    isScrolling = false;
                 }
             }
 
@@ -787,14 +814,21 @@
 
             galleryItems.forEach(item => {
                 const itemTop = item.getBoundingClientRect().top;
-                if (itemTop < windowHeight - 100) {
+                if (itemTop < windowHeight - 50) {
                     item.classList.add('visible');
                 }
             });
 
             videoWrappers.forEach(wrapper => {
                 const wrapperTop = wrapper.getBoundingClientRect().top;
-                if (wrapperTop < windowHeight - 100) {
+                if (wrapperTop < windowHeight - 50) {
+                    wrapper.classList.add('visible');
+                }
+            });
+
+            imageWrappers.forEach(wrapper => {
+                const wrapperTop = wrapper.getBoundingClientRect().top;
+                if (wrapperTop < windowHeight - 50) {
                     wrapper.classList.add('visible');
                 }
             });
@@ -830,9 +864,13 @@
             item.style.transitionDelay = `${index * 0.1}s`;
         });
 
-        // Add delay to video animations
+        // Add delay to video and image animations
         videoWrappers.forEach((wrapper, index) => {
             wrapper.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        imageWrappers.forEach((wrapper, index) => {
+            wrapper.style.transitionDelay = `${(index + videoWrappers.length) * 0.2}s`;
         });
 
         // Initial check for elements in view
