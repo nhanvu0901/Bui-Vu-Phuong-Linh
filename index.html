@@ -88,20 +88,9 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(135deg, #2c3e50, #4b6cb7);
+            background-color: #e91e63; /* Changed from gradient to solid red */
             position: relative;
             overflow: hidden;
-        }
-
-        #slide0::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(75, 108, 183, 0.3) 0%, transparent 40%),
-            radial-gradient(circle at 80% 30%, rgba(75, 108, 183, 0.35) 0%, transparent 45%);
         }
 
         #slide0 h1 {
@@ -148,6 +137,8 @@
         /* Slide 1 - Thoa Vũ Brand */
         #slide1 {
             display: flex;
+            position: relative;
+            overflow: hidden;
         }
 
         .left-side, .right-side {
@@ -155,23 +146,38 @@
             flex-direction: column;
             align-items: center;
             padding: 3rem;
+            z-index: 2;
         }
 
         .left-side {
             width: 65%;
             height: 100%;
-            background-color: #e91e63; /* Red background as shown in example */
+            background: linear-gradient(135deg, #2c3e50, #4b6cb7); /* Blue gradient from slide0 */
+            position: relative;
+        }
+
+        /* Add overlay to left side */
+        .left-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(75, 108, 183, 0.3) 0%, transparent 60%);
+            z-index: 1;
         }
 
         .right-side {
             width: 35%;
             height: 100%;
-            background-color: white;
+            background-color: #673ab7; /* Purple color that complements the blue gradient */
         }
 
         .text-container {
             text-align: center;
             margin-bottom: 2rem;
+            z-index: 2;
         }
 
         .brand-title {
@@ -205,6 +211,7 @@
             width: 100%;
             position: relative;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 400px; /* Ensure container has enough height */
@@ -705,6 +712,12 @@
             z-index: 5;
             transform: rotate(2deg);
         }
+        .dark-text{
+            color: white !important; /* Changed from #333 to white to be visible on purple background */
+        }
+        .invinsible-text{
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -745,17 +758,18 @@
             <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/1.png" alt="Thoa Vũ Image 1" class="img1" onclick="openImageModal(this.src)">
             <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/2.png" alt="Thoa Vũ Image 2" class="img2" onclick="openImageModal(this.src)">
             <!-- New image on left side -->
-            <img src="/api/placeholder/2000/940" alt="Thoa Vũ Image 4" class="img4" onclick="openImageModal(this.src)">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/10.png" alt="Thoa Vũ Image 4" class="img4" onclick="openImageModal(this.src)">
         </div>
     </div>
     <div class="right-side">
         <div class="text-container">
-            <span class="fashion-title">Facebook page cover</span>
+            <h2 class="brand-title invinsible-text">Thoa V</h2>
+            <span class="fashion-subtitle dark-text">Facebook page cover</span>
         </div>
         <div class="image-container">
             <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/3.png" alt="Thoa Vũ Image 3" class="img3" onclick="openImageModal(this.src)">
             <!-- New image on right side -->
-            <img src="/api/placeholder/2000/940" alt="Thoa Vũ Image 5" class="img5" onclick="openImageModal(this.src)">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/11.png" alt="Thoa Vũ Image 5" class="img5" onclick="openImageModal(this.src)">
         </div>
     </div>
 </section>
