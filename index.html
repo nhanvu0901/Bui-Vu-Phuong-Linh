@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -88,7 +88,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(135deg, #4a154b, #241734);
+            background: linear-gradient(135deg, #2c3e50, #4b6cb7);
             position: relative;
             overflow: hidden;
         }
@@ -100,8 +100,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(106, 27, 154, 0.1) 0%, transparent 30%),
-            radial-gradient(circle at 80% 30%, rgba(106, 27, 154, 0.15) 0%, transparent 35%);
+            background: radial-gradient(circle at 20% 50%, rgba(75, 108, 183, 0.3) 0%, transparent 40%),
+            radial-gradient(circle at 80% 30%, rgba(75, 108, 183, 0.35) 0%, transparent 45%);
         }
 
         #slide0 h1 {
@@ -150,78 +150,79 @@
             display: flex;
         }
 
+        .left-side, .right-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem;
+        }
+
         .left-side {
             width: 65%;
             height: 100%;
             background-color: #e91e63; /* Red background as shown in example */
-            position: relative;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .right-side {
             width: 35%;
             height: 100%;
             background-color: white;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        }
+
+        .text-container {
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         .brand-title {
-            color: white;
             font-size: 2.5rem;
-            margin-bottom: 2rem;
-            z-index: 5;
-            text-align: center;
+            color: white;
         }
 
-        .right-side h2 {
-            color: #333;
+        .fashion-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            margin-top: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .fashion-title {
+            font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .image-container {
-            position: relative;
+            flex: 1;
             width: 100%;
-            height: 70%;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 400px; /* Ensure container has enough height */
         }
 
-        .img1 {
-            position: absolute;
-            width: 45%;
-            height: auto;
-            left: 10%;
-            top: 20%;
-            animation: fadeIn 1s ease-out 0.5s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .img1, .img2, .img3, .high-res-image {
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .img2 {
-            position: absolute;
-            width: 35%;
-            height: auto;
-            right: 15%;
-            bottom: 20%;
-            animation: fadeIn 1s ease-out 1s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .img1:hover, .img2:hover {
+            transform: scale(1.03); /* Smaller scale for overlapping images */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .img3 {
-            width: 80%;
-            height: auto;
-            animation: fadeIn 1s ease-out 0.7s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .img3:hover, .high-res-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* Slide 2 - D'homestay */
@@ -245,7 +246,7 @@
         .gallery {
             position: relative;
             width: 100%;
-            max-width: 490px;
+            max-width: 425px;
             height: 1000px;
             margin: 0 auto;
             overflow: hidden;
@@ -336,22 +337,6 @@
             transform: scale(1.2);
         }
 
-        .phone-mockup {
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: auto;
-            animation: floatAnimation 3s ease-in-out infinite;
-        }
-
-        @keyframes floatAnimation {
-            0% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(10px); }
-            100% { transform: translateY(-50%) translateX(0); }
-        }
-
         /* Slide 3 - Video and Image Section */
         #slide3 {
             background-color: #4caf50; /* Green background as shown in example */
@@ -360,6 +345,16 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .greenlight-title {
+            color: white;
+            font-size: 45px;
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
         }
 
         .media-container {
@@ -394,44 +389,33 @@
             border-radius: 10px;
         }
 
-        .high-res-image {
+        .image-wrapper {
             width: 25%;
-            height:100%
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+        }
+
+        .high-res-image {
+            width: 100%;
+            height: auto;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .video-overlay:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+        .high-res-image:hover {
+            transform: scale(1.05);
         }
 
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            background-color: white;
-            transform: scale(1.1);
+        .zalo-text {
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         /* Modal styles */
@@ -534,82 +518,58 @@
             }
         }
 
-        /* Cloud-shaped blobs with animations */
-        .cloud-blob {
+        /* Cloud shapes with CSS masks */
+        .cloud {
+            height: 120px; /* control the size */
+            aspect-ratio: 1.8;
+            --g: radial-gradient(50% 50%, #fff 98%, #0000) no-repeat;
+            mask: var(--g) 100% 100%/30% 60%,var(--g) 70% 0/50% 100%,var(--g) 0 100%/36% 68%,var(--g) 27% 18%/26% 40%,linear-gradient(#fff 0 0) bottom/67% 58% no-repeat;
+            -webkit-mask: var(--g) 100% 100%/30% 60%,var(--g) 70% 0/50% 100%,var(--g) 0 100%/36% 68%,var(--g) 27% 18%/26% 40%,linear-gradient(#fff 0 0) bottom/67% 58% no-repeat;
+            background: rgba(255, 255, 255, 0.25);
             position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.08);
-            filter: blur(15px);
             z-index: 1;
         }
 
         .cloud-1 {
-            width: 300px;
             height: 120px;
-            left: -150px;
+            left: -20px;
             top: 25%;
-            border-radius: 100px;
             animation: floatCloud 24s ease-in-out infinite;
         }
 
         .cloud-2 {
-            width: 250px;
-            height: 100px;
-            right: -100px;
-            bottom: 20%;
-            border-radius: 100px;
+            height: 80px;
+            right: -10px;
+            bottom: 25%;
             animation: floatCloud 22s ease-in-out infinite 3s reverse;
         }
 
         .cloud-3 {
-            width: 200px;
-            height: 80px;
+            height: 100px;
             right: 30%;
             top: 15%;
-            border-radius: 100px;
             animation: floatCloud 20s ease-in-out infinite 1s;
         }
 
         .cloud-4 {
-            width: 180px;
             height: 70px;
             left: 20%;
             bottom: 30%;
-            border-radius: 100px;
             animation: floatCloud 18s ease-in-out infinite 2s reverse;
         }
 
-        .cloud-circle-1 {
-            width: 60px;
+        .cloud-5 {
+            height: 90px;
+            left: 60%;
+            top: 60%;
+            animation: floatCloud 26s ease-in-out infinite 1.5s;
+        }
+
+        .cloud-6 {
             height: 60px;
-            border-radius: 50%;
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.08);
-            filter: blur(15px);
-            left: -30px;
-            top: -30px;
-        }
-
-        .cloud-circle-2 {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.08);
-            filter: blur(15px);
-            left: 20px;
-            top: -40px;
-        }
-
-        .cloud-circle-3 {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.08);
-            filter: blur(15px);
-            right: -35px;
-            top: -35px;
+            right: 40%;
+            bottom: 60%;
+            animation: floatCloud 19s ease-in-out infinite 2.5s reverse;
         }
 
         @keyframes floatCloud {
@@ -632,10 +592,6 @@
 
             .gallery {
                 width: 90%;
-            }
-
-            .phone-mockup {
-                width: 200px;
             }
 
             .video-wrapper {
@@ -675,10 +631,6 @@
                 flex-direction: column;
             }
 
-            .phone-mockup {
-                display: none;
-            }
-
             #slide0 h1 {
                 font-size: 3rem;
             }
@@ -687,7 +639,7 @@
                 font-size: 1.2rem;
             }
 
-            .brand-title, .homestay-title {
+            .brand-title, .homestay-title, .greenlight-title {
                 font-size: 2rem;
             }
 
@@ -696,6 +648,39 @@
                 padding: 10px;
                 font-size: 20px;
             }
+
+            .fashion-subtitle, .fashion-title {
+                font-size: 1.5rem;
+            }
+        }
+        .img1 {
+            position: absolute;
+            width: 54%;  /* Increased by 20% from 45% */
+            height: auto;
+            left: 10%;
+            top: 20%;
+            animation: fadeIn 1s ease-out 0.5s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+
+        .img2 {
+            position: absolute;
+            width: 42%;  /* Increased by 20% from 35% */
+            height: auto;
+            right: 15%;
+            bottom: 20%;
+            animation: fadeIn 1s ease-out 1s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 6; /* Higher than img1 to ensure it's clickable */
+        }
+
+        .img3 {
+            width: 96%;  /* Increased by 20% from 80% */
+            height: auto;
+            animation: fadeIn 1s ease-out 0.7s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 5;
         }
     </style>
 </head>
@@ -716,24 +701,12 @@
 
 <!-- Slide 0: Title -->
 <section id="slide0">
-    <div class="cloud-blob cloud-1">
-        <div class="cloud-circle-1"></div>
-        <div class="cloud-circle-2"></div>
-        <div class="cloud-circle-3"></div>
-    </div>
-    <div class="cloud-blob cloud-2">
-        <div class="cloud-circle-1"></div>
-        <div class="cloud-circle-2"></div>
-        <div class="cloud-circle-3"></div>
-    </div>
-    <div class="cloud-blob cloud-3">
-        <div class="cloud-circle-1"></div>
-        <div class="cloud-circle-2"></div>
-    </div>
-    <div class="cloud-blob cloud-4">
-        <div class="cloud-circle-1"></div>
-        <div class="cloud-circle-2"></div>
-    </div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+    <div class="cloud cloud-5"></div>
+    <div class="cloud cloud-6"></div>
     <h1>Hello universe!</h1>
     <p>As a Multiple-task employer, I can transform any concept into a unique visual language, via <span class="canva-text">Canva</span></p>
 </section>
@@ -741,15 +714,21 @@
 <!-- Slide 1: Thoa Vũ Brand -->
 <section id="slide1">
     <div class="left-side">
-        <h2 class="brand-title">Thoa Vũ - a high-end Ao Dai Brand in Hạ Long</h2>
+        <div class="text-container">
+            <h2 class="brand-title">Thoa Vũ - a high-end Ao Dai Brand in Hạ Long</h2>
+            <span class="fashion-subtitle">4 hour voucher design</span>
+        </div>
         <div class="image-container">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/1.png" alt="Thoa Vũ Image 1" class="img1">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/2.png" alt="Thoa Vũ Image 2" class="img2">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/1.png" alt="Thoa Vũ Image 1" class="img1" onclick="openImageModal(this.src)">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/2.png" alt="Thoa Vũ Image 2" class="img2" onclick="openImageModal(this.src)">
         </div>
     </div>
     <div class="right-side">
+        <div class="text-container">
+            <span class="fashion-title">Facebook page cover</span>
+        </div>
         <div class="image-container">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/3.png" alt="Thoa Vũ Image 3" class="img3">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/3.png" alt="Thoa Vũ Image 3" class="img3" onclick="openImageModal(this.src)">
         </div>
     </div>
 </section>
@@ -776,8 +755,8 @@
             </div>
         </div>
         <div class="gallery-controls">
-            <button class="gallery-button prev-button">&lt;</button>
-            <button class="gallery-button next-button">&gt;</button>
+            <button class="gallery-button prev-button"><</button>
+            <button class="gallery-button next-button">></button>
         </div>
         <div class="gallery-indicator"></div>
     </div>
@@ -785,28 +764,49 @@
 
 <!-- Slide 3: Video and Image Section -->
 <section id="slide3">
+    <h2 class="greenlight-title">Greenlight - A tree donation app</h2>
     <div class="media-container">
         <div class="video-wrapper">
             <video src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/video/1.mp4" preload="metadata" poster="/api/placeholder/1920/1080" autoplay muted loop></video>
-            <div class="video-overlay">
-                <div class="play-button">❚❚</div>
-            </div>
+            <!-- Removed video overlay and play button -->
         </div>
-        <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/9.png" alt="High Resolution Image" class="high-res-image">
+        <div class="image-wrapper">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/9.png" alt="High Resolution Image" class="high-res-image" onclick="openImageModal(this.src)">
+            <span class="zalo-text">Zalo OA</span>
+        </div>
     </div>
 </section>
 
 <!-- Image Modal -->
 <div class="modal" id="imageModal">
-    <button class="close-modal">&times;</button>
-    <button class="modal-prev">&lt;</button>
-    <button class="modal-next">&gt;</button>
+    <button class="close-modal">×</button>
+    <button class="modal-prev"><</button>
+    <button class="modal-next">></button>
     <div class="modal-content">
         <img src="" alt="Modal Image" id="modalImage">
     </div>
 </div>
 
 <script>
+    // Function to open the image modal - available globally
+    function openImageModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+
+        // Set the image source
+        modalImage.src = imageSrc;
+
+        // Hide navigation buttons for single images
+        document.querySelector('.modal-prev').style.display = 'none';
+        document.querySelector('.modal-next').style.display = 'none';
+
+        // Open the modal
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+        console.log('Modal opened with image:', imageSrc);
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // Navigation dots functionality
         const dots = document.querySelectorAll('.nav-dots .dot');
@@ -1009,6 +1009,7 @@
         // Animate elements when they come into view
         function animateElementsInView() {
             const windowHeight = window.innerHeight;
+            const videoWrappers = document.querySelectorAll('.video-wrapper');
 
             videoWrappers.forEach(wrapper => {
                 const wrapperTop = wrapper.getBoundingClientRect().top;
@@ -1024,34 +1025,6 @@
             updateActiveDot(); // Update header on scroll
         });
 
-        // Video functionality
-        const videoWrappers = document.querySelectorAll('.video-wrapper');
-        const videoOverlays = document.querySelectorAll('.video-overlay');
-        const videos = document.querySelectorAll('.video-wrapper video');
-
-        // Initialize video state - since video is autoplay, update UI accordingly
-        videoOverlays.forEach((overlay, index) => {
-            const video = videos[index];
-            const playButton = overlay.querySelector('.play-button');
-
-            // Set initial state based on autoplay
-            if (!video.paused) {
-                overlay.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
-            }
-
-            overlay.addEventListener('click', function() {
-                if (video.paused) {
-                    video.play();
-                    playButton.innerHTML = "❚❚";
-                    this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
-                } else {
-                    video.pause();
-                    playButton.innerHTML = "▶";
-                    this.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
-                }
-            });
-        });
-
         // Initial check for elements in view
         setTimeout(animateElementsInView, 100);
 
@@ -1062,7 +1035,10 @@
         const prevModalButton = document.querySelector('.modal-prev');
         const nextModalButton = document.querySelector('.modal-next');
         let currentImageIndex = 0;
+        let currentGalleryType = 'gallery'; // To track which gallery we're viewing: 'gallery' or 'highres'
         const galleryImageSrcs = Array.from(galleryItems).map(item => item.getAttribute('data-img'));
+        const highResImage = document.querySelector('.high-res-image');
+        const highResImageSrc = highResImage ? highResImage.getAttribute('src') : null;
 
         // Open modal when gallery item is clicked
         galleryItems.forEach((item, index) => {
@@ -1070,10 +1046,32 @@
                 const imageSrc = this.getAttribute('data-img');
                 modalImage.src = imageSrc;
                 currentImageIndex = index;
+                currentGalleryType = 'gallery';
                 modal.classList.add('open');
                 document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+
+                // Show navigation buttons for gallery images
+                prevModalButton.style.display = galleryImageSrcs.length > 1 ? 'flex' : 'none';
+                nextModalButton.style.display = galleryImageSrcs.length > 1 ? 'flex' : 'none';
             });
         });
+
+        // Open modal when high-res image is clicked
+        if (highResImage) {
+            highResImage.addEventListener('click', function() {
+                modalImage.src = this.src;
+                currentGalleryType = 'highres';
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+
+                // Hide navigation buttons for single high-res image
+                prevModalButton.style.display = 'none';
+                nextModalButton.style.display = 'none';
+            });
+
+            // Add cursor pointer to high-res image
+            highResImage.style.cursor = 'pointer';
+        }
 
         // Close modal
         closeModal.addEventListener('click', function() {
@@ -1091,14 +1089,18 @@
 
         // Navigate to previous image
         prevModalButton.addEventListener('click', function() {
-            currentImageIndex = (currentImageIndex - 1 + galleryImageSrcs.length) % galleryImageSrcs.length;
-            modalImage.src = galleryImageSrcs[currentImageIndex];
+            if (currentGalleryType === 'gallery') {
+                currentImageIndex = (currentImageIndex - 1 + galleryImageSrcs.length) % galleryImageSrcs.length;
+                modalImage.src = galleryImageSrcs[currentImageIndex];
+            }
         });
 
         // Navigate to next image
         nextModalButton.addEventListener('click', function() {
-            currentImageIndex = (currentImageIndex + 1) % galleryImageSrcs.length;
-            modalImage.src = galleryImageSrcs[currentImageIndex];
+            if (currentGalleryType === 'gallery') {
+                currentImageIndex = (currentImageIndex + 1) % galleryImageSrcs.length;
+                modalImage.src = galleryImageSrcs[currentImageIndex];
+            }
         });
 
         // Keyboard navigation
@@ -1108,10 +1110,10 @@
             if (e.key === 'Escape') {
                 modal.classList.remove('open');
                 document.body.style.overflow = 'auto';
-            } else if (e.key === 'ArrowLeft') {
+            } else if (e.key === 'ArrowLeft' && currentGalleryType === 'gallery') {
                 currentImageIndex = (currentImageIndex - 1 + galleryImageSrcs.length) % galleryImageSrcs.length;
                 modalImage.src = galleryImageSrcs[currentImageIndex];
-            } else if (e.key === 'ArrowRight') {
+            } else if (e.key === 'ArrowRight' && currentGalleryType === 'gallery') {
                 currentImageIndex = (currentImageIndex + 1) % galleryImageSrcs.length;
                 modalImage.src = galleryImageSrcs[currentImageIndex];
             }
