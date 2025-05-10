@@ -210,17 +210,17 @@
             min-height: 400px; /* Ensure container has enough height */
         }
 
-        .img1, .img2, .img3, .high-res-image {
+        .img1, .img2, .img3, .img4, .img5, .high-res-image {
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .img1:hover, .img2:hover {
+        .img1:hover, .img2:hover, .img4:hover {
             transform: scale(1.03); /* Smaller scale for overlapping images */
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .img3:hover, .high-res-image:hover {
+        .img3:hover, .img5:hover, .high-res-image:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
@@ -682,6 +682,29 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 5;
         }
+
+        /* New image styles */
+        .img4 {
+            position: absolute;
+            width: 38%;
+            height: auto;
+            left: 5%;
+            bottom: 5%;
+            animation: fadeIn 1s ease-out 1.2s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 4;
+            transform: rotate(-5deg);
+        }
+
+        .img5 {
+            width: 85%;
+            height: auto;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-out 1.3s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+            transform: rotate(2deg);
+        }
     </style>
 </head>
 <body>
@@ -721,6 +744,8 @@
         <div class="image-container">
             <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/1.png" alt="Thoa Vũ Image 1" class="img1" onclick="openImageModal(this.src)">
             <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/2.png" alt="Thoa Vũ Image 2" class="img2" onclick="openImageModal(this.src)">
+            <!-- New image on left side -->
+            <img src="/api/placeholder/2000/940" alt="Thoa Vũ Image 4" class="img4" onclick="openImageModal(this.src)">
         </div>
     </div>
     <div class="right-side">
@@ -729,6 +754,8 @@
         </div>
         <div class="image-container">
             <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/3.png" alt="Thoa Vũ Image 3" class="img3" onclick="openImageModal(this.src)">
+            <!-- New image on right side -->
+            <img src="/api/placeholder/2000/940" alt="Thoa Vũ Image 5" class="img5" onclick="openImageModal(this.src)">
         </div>
     </div>
 </section>
@@ -1036,6 +1063,11 @@
         const nextModalButton = document.querySelector('.modal-next');
         let currentImageIndex = 0;
         let currentGalleryType = 'gallery'; // To track which gallery we're viewing: 'gallery' or 'highres'
+
+        // Get all clickable images
+        const allClickableImages = document.querySelectorAll('.img1, .img2, .img3, .img4, .img5, .high-res-image');
+        const imageArray = Array.from(allClickableImages).map(img => img.getAttribute('src'));
+
         const galleryImageSrcs = Array.from(galleryItems).map(item => item.getAttribute('data-img'));
         const highResImage = document.querySelector('.high-res-image');
         const highResImageSrc = highResImage ? highResImage.getAttribute('src') : null;
@@ -1106,7 +1138,6 @@
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (!modal.classList.contains('open')) return;
-
             if (e.key === 'Escape') {
                 modal.classList.remove('open');
                 document.body.style.overflow = 'auto';
