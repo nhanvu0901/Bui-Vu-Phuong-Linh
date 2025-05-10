@@ -915,18 +915,18 @@
         prevButton.addEventListener('click', prevSlide);
         nextButton.addEventListener('click', nextSlide);
 
-        // Add auto-slide functionality with 5 second interval
-        let slideInterval = setInterval(nextSlide, 5000);
-
-        // Pause auto-slide when user interacts with gallery
-        const gallery = document.querySelector('.gallery');
-        gallery.addEventListener('mouseenter', function() {
-            clearInterval(slideInterval);
-        });
-
-        gallery.addEventListener('mouseleave', function() {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
+        // // Add auto-slide functionality with 5 second interval
+        // let slideInterval = setInterval(nextSlide, 5000);
+        //
+        // // Pause auto-slide when user interacts with gallery
+        // const gallery = document.querySelector('.gallery');
+        // gallery.addEventListener('mouseenter', function() {
+        //     clearInterval(slideInterval);
+        // });
+        //
+        // gallery.addEventListener('mouseleave', function() {
+        //     slideInterval = setInterval(nextSlide, 5000);
+        // });
 
         // Set initial active section
         let currentSection = 0;
