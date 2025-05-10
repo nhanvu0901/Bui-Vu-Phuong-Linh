@@ -134,102 +134,85 @@
             to { text-shadow: 0 0 20px rgba(0, 196, 204, 0.9), 0 0 30px rgba(0, 196, 204, 0.3); }
         }
 
-        /* Slide 1 - Thoa Vũ Brand */
+        /* Slide 1 - Áo dài Thoa Vũ - Redesigned Grid Layout */
         #slide1 {
-            display: flex;
+            background: linear-gradient(135deg, #2c3e50, #4b6cb7);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 20px;
             overflow: hidden;
         }
 
-        .left-side, .right-side {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 3rem;
-            z-index: 2;
+        /* Grid rows */
+        .grid-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
         }
 
-        .left-side {
-            width: 65%;
-            height: 100%;
-            background: linear-gradient(135deg, #2c3e50, #4b6cb7); /* Blue gradient from slide0 */
+        /* Center text container */
+        .center-text {
+            text-align: center;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
             position: relative;
+            padding-bottom: 15px;
         }
 
-        /* Add overlay to left side */
-        .left-side::before {
+        .brand-name::after {
             content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Image styling */
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            height: 0;
+            padding-bottom: 60%; /* Maintain aspect ratio for wider than tall images */
+        }
+
+        .grid-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-item img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 50%, rgba(75, 108, 183, 0.3) 0%, transparent 60%);
-            z-index: 1;
-        }
-
-        .right-side {
-            width: 35%;
-            height: 100%;
-            background-color: #673ab7; /* Purple color that complements the blue gradient */
-        }
-
-        .text-container {
-            text-align: center;
-            margin-bottom: 2rem;
-            z-index: 2;
-        }
-
-        .brand-title {
-            font-size: 2.5rem;
-            color: white;
-        }
-
-        .fashion-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: white;
-            margin-top: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .fashion-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-container {
-            flex: 1;
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 400px; /* Ensure container has enough height */
-        }
-
-        .img1, .img2, .img3, .img4, .img5, .high-res-image {
+            object-fit: cover;
+            transition: transform 0.5s ease;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
-        .img1:hover, .img2:hover, .img4:hover {
-            transform: scale(1.03); /* Smaller scale for overlapping images */
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .img3:hover, .img5:hover, .high-res-image:hover {
+        .grid-item img:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* Slide 2 - D'homestay */
@@ -589,12 +572,8 @@
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .left-side {
-                width: 60%;
-            }
-
-            .right-side {
-                width: 40%;
+            .grid-row {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
 
             .gallery {
@@ -611,15 +590,6 @@
         }
 
         @media (max-width: 768px) {
-            #slide1 {
-                flex-direction: column;
-            }
-
-            .left-side, .right-side {
-                width: 100%;
-                height: 50%;
-            }
-
             .gallery {
                 width: 95%;
                 height: 300px;
@@ -646,7 +616,7 @@
                 font-size: 1.2rem;
             }
 
-            .brand-title, .homestay-title, .greenlight-title {
+            .brand-name, .homestay-title, .greenlight-title {
                 font-size: 2rem;
             }
 
@@ -656,67 +626,25 @@
                 font-size: 20px;
             }
 
-            .fashion-subtitle, .fashion-title {
-                font-size: 1.5rem;
+            .grid-row {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                padding: 10px;
             }
         }
-        .img1 {
-            position: absolute;
-            width: 54%;  /* Increased by 20% from 45% */
-            height: auto;
-            left: 10%;
-            top: 20%;
-            animation: fadeIn 1s ease-out 0.5s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 5;
-        }
 
-        .img2 {
-            position: absolute;
-            width: 42%;  /* Increased by 20% from 35% */
-            height: auto;
-            right: 15%;
-            bottom: 20%;
-            animation: fadeIn 1s ease-out 1s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 6; /* Higher than img1 to ensure it's clickable */
-        }
+        @media (max-width: 576px) {
+            .brand-name {
+                font-size: 2rem;
+            }
 
-        .img3 {
-            width: 96%;  /* Increased by 20% from 80% */
-            height: auto;
-            animation: fadeIn 1s ease-out 0.7s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 5;
-        }
+            #slide1 {
+                padding: 30px 10px;
+            }
 
-        /* New image styles */
-        .img4 {
-            position: absolute;
-            width: 38%;
-            height: auto;
-            left: 5%;
-            bottom: 5%;
-            animation: fadeIn 1s ease-out 1.2s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 4;
-            transform: rotate(-5deg);
-        }
-
-        .img5 {
-            width: 85%;
-            height: auto;
-            margin-top: 20px;
-            animation: fadeIn 1s ease-out 1.3s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 5;
-            transform: rotate(2deg);
-        }
-        .dark-text{
-            color: white !important; /* Changed from #333 to white to be visible on purple background */
-        }
-        .invinsible-text{
-            visibility: hidden;
+            .grid-row {
+                padding: 5px;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -747,34 +675,44 @@
     <p>As a Multiple-task employer, I can transform any concept into a unique visual language, via <span class="canva-text">Canva</span></p>
 </section>
 
-<!-- Slide 1: Thoa Vũ Brand -->
+<!-- Slide 1: Áo dài Thoa Vũ - Redesigned Grid Layout -->
 <section id="slide1">
-    <div class="left-side">
-        <div class="text-container">
-            <h2 class="brand-title">Thoa Vũ - a high-end Ao Dai Brand in Hạ Long</h2>
-            <span class="fashion-subtitle">4 hour voucher design</span>
+    <!-- Top grid row with 3 images -->
+    <div class="grid-row top-row">
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/1.png" alt="Thoa Vũ Image 1" onclick="openImageModal(this.src)">
         </div>
-        <div class="image-container">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/1.png" alt="Thoa Vũ Image 1" class="img1" onclick="openImageModal(this.src)">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/2.png" alt="Thoa Vũ Image 2" class="img2" onclick="openImageModal(this.src)">
-            <!-- New image on left side -->
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/10.png" alt="Thoa Vũ Image 4" class="img4" onclick="openImageModal(this.src)">
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/2.png" alt="Thoa Vũ Image 2" onclick="openImageModal(this.src)">
+        </div>
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/3.png" alt="Thoa Vũ Image 3" onclick="openImageModal(this.src)">
         </div>
     </div>
-    <div class="right-side">
-        <div class="text-container">
-            <h2 class="brand-title invinsible-text">Thoa V</h2>
-            <span class="fashion-subtitle dark-text">Facebook page cover</span>
+
+    <!-- Center text -->
+    <div class="center-text">
+        <h2 class="brand-name">Áo dài Thoa Vũ</h2>
+    </div>
+
+    <!-- Bottom grid row with 4 images -->
+    <div class="grid-row bottom-row">
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/10.png" alt="Thoa Vũ Image 4" onclick="openImageModal(this.src)">
         </div>
-        <div class="image-container">
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/3.png" alt="Thoa Vũ Image 3" class="img3" onclick="openImageModal(this.src)">
-            <!-- New image on right side -->
-            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/11.png" alt="Thoa Vũ Image 5" class="img5" onclick="openImageModal(this.src)">
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/12.png" alt="Thoa Vũ Image 5" onclick="openImageModal(this.src)">
+        </div>
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/13.png" alt="Thoa Vũ Image 6" onclick="openImageModal(this.src)">
+        </div>
+        <div class="grid-item">
+            <img src="https://nhanvu0901.github.io/Bui-Vu-Phuong-Linh/image/14.png" alt="Thoa Vũ Image 7" onclick="openImageModal(this.src)">
         </div>
     </div>
 </section>
 
-<!-- Slide 2: D'homestay - Updated to Slider -->
+<!-- Slide 2: D'homestay -->
 <section id="slide2">
     <h2 class="homestay-title">D'homestay Hạ Long</h2>
     <div class="gallery">
@@ -914,19 +852,6 @@
         // Add event listeners for gallery controls
         prevButton.addEventListener('click', prevSlide);
         nextButton.addEventListener('click', nextSlide);
-
-        // // Add auto-slide functionality with 5 second interval
-        // let slideInterval = setInterval(nextSlide, 5000);
-        //
-        // // Pause auto-slide when user interacts with gallery
-        // const gallery = document.querySelector('.gallery');
-        // gallery.addEventListener('mouseenter', function() {
-        //     clearInterval(slideInterval);
-        // });
-        //
-        // gallery.addEventListener('mouseleave', function() {
-        //     slideInterval = setInterval(nextSlide, 5000);
-        // });
 
         // Set initial active section
         let currentSection = 0;
@@ -1079,7 +1004,7 @@
         let currentGalleryType = 'gallery'; // To track which gallery we're viewing: 'gallery' or 'highres'
 
         // Get all clickable images
-        const allClickableImages = document.querySelectorAll('.img1, .img2, .img3, .img4, .img5, .high-res-image');
+        const allClickableImages = document.querySelectorAll('.img1, .img2, .img3, .img4, .img5, .high-res-image, .grid-item img');
         const imageArray = Array.from(allClickableImages).map(img => img.getAttribute('src'));
 
         const galleryImageSrcs = Array.from(galleryItems).map(item => item.getAttribute('data-img'));
@@ -1101,23 +1026,6 @@
                 nextModalButton.style.display = galleryImageSrcs.length > 1 ? 'flex' : 'none';
             });
         });
-
-        // Open modal when high-res image is clicked
-        if (highResImage) {
-            highResImage.addEventListener('click', function() {
-                modalImage.src = this.src;
-                currentGalleryType = 'highres';
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-
-                // Hide navigation buttons for single high-res image
-                prevModalButton.style.display = 'none';
-                nextModalButton.style.display = 'none';
-            });
-
-            // Add cursor pointer to high-res image
-            highResImage.style.cursor = 'pointer';
-        }
 
         // Close modal
         closeModal.addEventListener('click', function() {
